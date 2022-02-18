@@ -1,0 +1,24 @@
+
+<br>
+<div>
+    Please Enter the amount of money you would like to transfer below:
+</div>
+<br>
+<form [formGroup]="transferFormGroup" (ngSubmit)="onSubmit()" class="form-horizontal" action="/action_page.php">
+    <div class="form-group">
+      <div class="col-sm-12">
+        <input formControlName="amount" type="number" min="0" max="100000" class="form-control"  placeholder="Enter amount">
+
+        <div *ngIf="amount.invalid && (amount.touched || amount.dirty)" class="alert alert-danger mt-1">
+            <div *ngIf="amount.errors?.['required']">
+              Amount cannnot be empty
+            </div>
+            <div *ngIf="amount.errors?.['max']">
+              Amount cannot be more than Rs.100,000
+            </div>
+        </div>
+      </div>  
+    </div>
+
+    <button class="btn btn-primary" type="submit">Send</button>
+</form>
